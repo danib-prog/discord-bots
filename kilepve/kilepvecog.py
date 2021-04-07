@@ -29,11 +29,14 @@ class Kilepve(commands.Cog):
             return
 
         if after.channel == None:
-            targetchannel_client = await before.channel.connect()
-            targetchannel_client.play(discord.FFmpegPCMAudio("kilepve.mp3", executable="C:\\ffmpeg\\bin\\ffmpeg.exe"))
-            while targetchannel_client.is_playing():
-                time.sleep(.1)
-            await targetchannel_client.disconnect()
+            try:
+                targetchannel_client = await before.channel.connect()
+                targetchannel_client.play(discord.FFmpegPCMAudio("kilepve.mp3", executable="ffmpeg"))
+                while targetchannel_client.is_playing():
+                    time.sleep(.1)
+                await targetchannel_client.disconnect()
+            except discord.errors.ClientException:
+                await before.channel.disconnect()
 
     @commands.command(name="count")
     async def responsetime_counter(self, ctx: commands.Context):
