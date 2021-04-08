@@ -35,8 +35,15 @@ class Kilepve(commands.Cog):
                 while targetchannel_client.is_playing():
                     time.sleep(.1)
                 await targetchannel_client.disconnect()
+
             except discord.errors.ClientException:
-                await before.channel.disconnect()
+                time.sleep(1.5)
+                #Because 'kilepve.mp3' is about 2 seconds long, and if someone
+                #disconnects while playing after a previous disconnection,
+                # i don't want it to disconnect
+                targetchannel_client = discord.utils.get(self.bot.voice_clients, channel=before.channel)
+                await targetchannel_client.disconnect()
+
 
     @commands.command(name="count")
     async def responsetime_counter(self, ctx: commands.Context):
