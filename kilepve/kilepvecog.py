@@ -54,6 +54,11 @@ class Kilepve(commands.Cog):
         finalnum = counter.num
         await ctx.send(f"I counted til {finalnum} while 'OK' was sent. Pretty cool, huh?!")
 
+    @commands.command(name="bazmaa")
+    async def reopener(self, ctx: commands.Context):
+        self.bot.clear()
+
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(Kilepve(bot))
