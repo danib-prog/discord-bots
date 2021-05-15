@@ -59,6 +59,5 @@ class Kilepve(commands.Cog):
         self.bot.clear()
 
 
-
 def setup(bot: commands.Bot):
     bot.add_cog(Kilepve(bot))
